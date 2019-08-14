@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.preference.PreferenceManager;
 
 
 public class Review extends AppCompatActivity {
@@ -17,10 +18,10 @@ public class Review extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
         final TextView txtName=findViewById(R.id.txtName);
-        TextView txtLastName=findViewById(R.id.txtLastName);
-        TextView txtAge=findViewById(R.id.txtAge);
-        TextView txtNumber=findViewById(R.id.txtNumber);
-        TextView txtAddress=findViewById(R.id.txtAddress);
+        final TextView txtLastName=findViewById(R.id.txtLastName);
+        final TextView txtAge=findViewById(R.id.txtAge);
+        final TextView txtNumber=findViewById(R.id.txtNumber);
+        final TextView txtAddress=findViewById(R.id.txtAddress);
         Button btnEdit=findViewById(R.id.btnEdit);
         Button btnConfirm=findViewById(R.id.btnConfirm);
 
@@ -41,7 +42,7 @@ public class Review extends AppCompatActivity {
 
 
         Intent lastName=getIntent();
-        String lastname=lastName.getStringExtra("lastname");
+        final String lastname=lastName.getStringExtra("lastname");
         txtLastName.setText(lastname);
 
         Intent a=getIntent();
@@ -60,12 +61,38 @@ public class Review extends AppCompatActivity {
           @Override
           public void onClick(View view) {
               String name=txtName.getText().toString();
+              PreferenceManager.getDefaultSharedPreferences(Review.this)
+                              .edit()
+                              .putString("name",name)
+                              .apply();
+
+              String lastName=txtLastName.getText().toString();
+              PreferenceManager.getDefaultSharedPreferences(Review.this)
+                      .edit()
+                      .putString("lastname",lastname)
+                      .apply();
+
+              String age=txtAge.getText().toString();
+              PreferenceManager.getDefaultSharedPreferences(Review.this)
+                      .edit()
+                      .putString("age",age)
+                      .apply();
+
+              String number=txtNumber.getText().toString();
+              PreferenceManager.getDefaultSharedPreferences(Review.this)
+                      .edit()
+                      .putString("number",number)
+                      .apply();
+
+              String address=txtAddress.getText().toString();
+              PreferenceManager.getDefaultSharedPreferences(Review.this)
+                      .edit()
+                      .putString("address",address)
+                      .apply();
 
 
-
-
-
-           }
+              Intent finalPage=new Intent();
+          }
            });
 
 

@@ -1,12 +1,15 @@
 package com.zolghadr.newapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
 
@@ -27,35 +30,34 @@ public class Profile extends AppCompatActivity {
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent i= new Intent(Profile.this,Review.class);
                 String name=edtName.getText().toString();
-                Intent nameIntent= new Intent(Profile.this,Review.class);
-                startActivity(nameIntent);
-                nameIntent.putExtra("name",name);
-
                 String lastname=edtLastName.getText().toString();
-                Intent lastnameIntent= new Intent(Profile.this,Review.class);
-                startActivity(lastnameIntent);
-                lastnameIntent.putExtra("lastname",lastname);
-
                 String number=edtNumber.getText().toString();
-                Intent numberIntent= new Intent(Profile.this,Review.class);
-                startActivity(numberIntent);
-                numberIntent.putExtra("number",number);
-
                 String age=edtAge.getText().toString();
-                Intent ageIntent= new Intent(Profile.this,Review.class);
-                startActivity(ageIntent);
-                ageIntent.putExtra("age",age);
-
                 String address=edtAddress.getText().toString();
-                Intent addressIntent= new Intent(Profile.this,Review.class);
-                startActivity(addressIntent);
-                addressIntent.putExtra("address",address);
+
+                i.putExtra("name",name);
+                i.putExtra("lastname",lastname);
+                i.putExtra("number",number);
+                i.putExtra("age",age);
+                i.putExtra("address",address);
+
+                startActivityForResult(i,500);
             }
         });
 
 
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode==500)
+            if (resultCode== Activity.RESULT_OK){
+                Toast.makeText(Profile.this, "Your information has been saved successfully", Toast.LENGTH_LONG).show();
+            }
     }
 }
