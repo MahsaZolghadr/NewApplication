@@ -92,6 +92,8 @@ public class Review extends AppCompatActivity {
 
 
               Intent finalPage=new Intent();
+              setResult(Activity.RESULT_OK,finalPage);
+              finish();
           }
            });
 
