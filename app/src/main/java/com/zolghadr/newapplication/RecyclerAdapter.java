@@ -18,12 +18,12 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListRecyclerViewHolder> {
 
     List<String> menu;
-    Context context;
+    Recycler recycler;
 
-    public RecyclerAdapter(List<String> list, Context context) {
+    public RecyclerAdapter(List<String> list, Recycler recycler) {
 
         this.menu = list;
-        this.context = context;
+        this.recycler = recycler;
 
     }
 
@@ -33,7 +33,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListRe
     public ListRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler, parent, false);
-        ListRecyclerViewHolder holder = new ListRecyclerViewHolder(v);
+        ListRecyclerViewHolder holder = new ListRecyclerViewHolder(v,recycler);
         return holder;
 
     }
@@ -56,12 +56,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListRe
 
         TextView txtList;
         List<String> myList = new ArrayList<>();
-        Context context;
+        Recycler recycler;
 
-        public ListRecyclerViewHolder(@NonNull View itemView) {
+        public ListRecyclerViewHolder(@NonNull View itemView, Recycler recycler) {
             super(itemView);
             this.myList = menu;
-            this.context = context;
+            this.recycler = recycler;
             itemView.setOnClickListener((View.OnClickListener) this);
             txtList = itemView.findViewById(R.id.txtList);
 
@@ -71,16 +71,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListRe
             int position = getAdapterPosition();
             switch (position) {
                 case 0:
-                    Intent intent0 = new Intent(this.context, Dial.class);
-                    this.context.startActivity(intent0);
+                    Intent intent0 = new Intent(this.recycler, Dial.class);
+                    this.recycler.startActivity(intent0);
                     break;
                 case 1:
-                    Intent intent1 = new Intent(this.context, Profile.class);
-                    this.context.startActivity(intent1);
+                    Intent intent1 = new Intent(this.recycler, Profile.class);
+                    this.recycler.startActivity(intent1);
                     break;
                 case 2:
-                    Intent intent2 = new Intent(this.context, Months.class);
-                    this.context.startActivity(intent2);
+                    Intent intent2 = new Intent(this.recycler, Months.class);
+                    this.recycler.startActivity(intent2);
                     break;
 
             }
