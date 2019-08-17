@@ -33,7 +33,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListRe
     public ListRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler, parent, false);
-        ListRecyclerViewHolder holder = new ListRecyclerViewHolder(v,recycler);
+        ListRecyclerViewHolder holder = new ListRecyclerViewHolder(v, recycler);
         return holder;
 
     }
@@ -88,4 +88,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListRe
 
 
     }
+
 }
